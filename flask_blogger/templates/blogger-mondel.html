@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Document</title>
+<!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="/static/imgs/love.jpg"/>
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/layui/css/layui.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="/static/css/utli.css">
+<!--===============================================================================================-->
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+</head>
+<body>
+  <div class="header">
+    <div class="menu-btn">
+      <div class="menu">
+        
+      </div>
+    </div>
+    <h1 class="logo">
+      <a href="index">
+        <span>MYBLOG</span>
+        <img src="/static/imgs/logo.png">
+      </a>
+    </h1>
+    <div class="nav">
+      <a href="index" class="active">文章</a>
+      <a href="whisper">微语</a>
+      <a href="leacots">留言</a>
+      <a href="album">相册</a>
+      <a href="about">关于</a>
+    </div>
+     <ul class="layui-nav header-down-nav">
+          <li class="layui-nav-item"><a href="index">文章</a></li>
+          <li class="layui-nav-item"><a href="whisper">微语</a></li>
+          <li class="layui-nav-item"><a href="leacots">留言</a></li>
+          <li class="layui-nav-item"><a href="album">相册</a></li>
+          <li class="layui-nav-item"><a href="about" class="active">关于</a></li>
+        <span class="layui-nav-bar"></span>
+        
+    </ul>
+    <p class="welcome-text">
+      欢迎来到<span class="name">ly</span>的博客~
+    </p>
+  </div>
+
+{% block about_html %}{% endblock %}
+{% block album_html %}{% endblock %}
+{% block details_html %}{% endblock %}
+{% block index_html %}{% endblock %}
+{% block leacots_html %}{% endblock %}
+{% block whisper_html %}{% endblock %}
+
+ <div class="footer-wrap">
+    <div class="footer w1000">
+      <div class="qrcode">
+        <img src="/static/imgs/erweima.jpg">
+      </div>
+      <div class="practice-mode">
+        <img src="/static/imgs/down_img.jpg">
+        <div class="text">
+          <h4 class="title">我的联系方式</h4>
+          <p>微信<span class="WeChat">ldh15087767923</span></p>
+          <p>手机<span class="iphone">18469249090</span></p>
+          <p>邮箱<span class="email">3411894994@qq.com</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--===============================================================================================-->
+<script type="text/javascript" src="/static/js/love_ effects.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript">
+  $(".menu-btn").click(function(){
+      $(".menu").toggleClass("on");
+      $(".layui-nav").toggleClass("layui-show");
+  });
+
+</script>
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+{% block about_js %}{% endblock %}
+{% block album_js %}{% endblock %} 
+{% block details_js %}{% endblock %}
+{% block index_js %}{% endblock %}
+{% block leacots_js %}{% endblock %}
+{% block whisper_js %}{% endblock %}
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sdaf</title>
+    <style type="text/css">
+        body {
+            background: #000;
+            background-attachment: fixed;
+            word-wrap: break-word;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            background-repeat: no-repeat
+            }
+             
+            ul {
+            list-style: none
+            }
+             
+            .cb-slideshow li:nth-child(1) span {
+            background-image: url(/static/imgs/love.jpg)
+            }
+             
+            .cb-slideshow li:nth-child(2) span {
+            background-image: url(/static/imgs/1.png)
+            }
+             
+            .cb-slideshow li:nth-child(3) span {
+            background-image: url(/static/imgs/6.jpg)
+            }
+             
+            .cb-slideshow li:nth-child(4) span {
+            background-image: url(/static/imgs/3.jpg)
+            }
+             
+            .cb-slideshow li:nth-child(5) span {
+            background-image: url(/static/imgs/4.jpg)
+            }
+             
+            .cb-slideshow li:nth-child(6) span {
+            background-image: url(/static/imgs/5.jpg)
+            }
+             
+            .cb-slideshow,.cb-slideshow:after {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -2
+            }
+             
+            .cb-slideshow:after {
+            content: ''
+            }
+             
+            .cb-slideshow li span {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: transparent;
+            background-size: cover;
+            background-position: 50% 50%;
+            background-repeat: none;
+            opacity: 0;
+            z-index: -2;
+            -webkit-backface-visibility: hidden;
+            -webkit-animation: imageAnimation 36s linear infinite 0s;
+            -moz-animation: imageAnimation 36s linear infinite 0s;
+            -o-animation: imageAnimation 36s linear infinite 0s;
+            -ms-animation: imageAnimation 36s linear infinite 0s;
+            animation: imageAnimation 36s linear infinite 0s
+            }
+             
+            .cb-slideshow li:nth-child(2) span {
+            -webkit-animation-delay: 6s;
+            -moz-animation-delay: 6s;
+            -o-animation-delay: 6s;
+            -ms-animation-delay: 6s;
+            animation-delay: 6s
+            }
+             
+            .cb-slideshow li:nth-child(3) span {
+            -webkit-animation-delay: 12s;
+            -moz-animation-delay: 12s;
+            -o-animation-delay: 12s;
+            -ms-animation-delay: 12s;
+            animation-delay: 12s
+            }
+             
+            .cb-slideshow li:nth-child(4) span {
+            -webkit-animation-delay: 18s;
+            -moz-animation-delay: 18s;
+            -o-animation-delay: 18s;
+            -ms-animation-delay: 18s;
+            animation-delay: 18s
+            }
+             
+            .cb-slideshow li:nth-child(5) span {
+            -webkit-animation-delay: 24s;
+            -moz-animation-delay: 24s;
+            -o-animation-delay: 24s;
+            -ms-animation-delay: 24s;
+            animation-delay: 24s
+            }
+             
+            .cb-slideshow li:nth-child(6) span {
+            -webkit-animation-delay: 30s;
+            -moz-animation-delay: 30s;
+            -o-animation-delay: 30s;
+            -ms-animation-delay: 30s;
+            animation-delay: 30s
+            }
+             
+            @-webkit-keyframes imageAnimation {
+            0% {
+            opacity: 0;
+            -webkit-animation-timing-function: ease-in
+            }
+             
+            8% {
+            opacity: 1;
+            -webkit-transform: scale(1.05);
+            -webkit-animation-timing-function: ease-out
+            }
+             
+            17% {
+            opacity: 1;
+            -webkit-transform: scale(1.1) rotate(0)
+            }
+             
+            25% {
+            opacity: 0;
+            -webkit-transform: scale(1.1) rotate(0)
+            }
+             
+            100% {
+            opacity: 0
+            }
+            }
+    </style>
+</head>
+<body>
+    <ul class="cb-slideshow">
+        <li>
+            <span>幻想</span></li>
+        <li>
+            <span>领域</span></li>
+        <li>
+            <span>一个</span></li>
+        <li>
+            <span>专业的</span></li>
+        <li>
+            <span>二次元</span></li>
+        <li>
+            <span>图床</span></li>
+    </ul>
+    <script type="text/javascript">
+
+
+    </script>
+</body>
+</html>
