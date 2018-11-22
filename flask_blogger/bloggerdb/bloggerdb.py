@@ -4,9 +4,9 @@ import sys
 
 app = Flask(__name__)
 if sys.platform in ['win32','win64']:
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost:3306/bloggerdb?charset=utf8"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost:3306/bloggerdb?charset=utf8mb4"
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456@localhost:3306/bloggerdb?charset=utf8"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456@localhost:3306/bloggerdb?charset=utf8mb4"
     
 app.config['SQLALCHEMY_COMMIT_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -16,6 +16,7 @@ db = SQLAlchemy(app)
 
 class Article(db.Model):
     """ 文章 """
+    __table_args__ = {'mysql_collate': 'utf8mb4_general_ci'}
     a_id = db.Column(db.Integer, autoincrement=True, primary_key=True, comment='文章id')
     a_title = db.Column(db.String(100), unique=True, nullable=False, comment='文章题目')
     a_content = db.Column(db.Text, nullable=False, comment='文章内容')
@@ -29,6 +30,7 @@ class Article(db.Model):
 
 class Photo(db.Model):
     """ 相册 """
+    __table_args__ = {'mysql_collate': 'utf8mb4_general_ci'}
     p_id = db.Column(db.Integer, autoincrement=True, primary_key=True ,comment='相册id')
     p_name = db.Column(db.String(50), nullable=False ,comment='相册名')
     p_address = db.Column(db.String(100) ,comment='相册地点')
@@ -40,6 +42,7 @@ class Photo(db.Model):
 
 class Message(db.Model):
     """ 留言 """
+    __table_args__ = {'mysql_collate': 'utf8mb4_general_ci'}
     m_id = db.Column(db.Integer, autoincrement=True, primary_key=True,comment='留言id')
     m_time = db.Column(db.String(50), default='CURRENT_TIMESTAMP',comment='留言时间')
     m_name = db.Column(db.String(50), nullable=False,comment='留言名称')
