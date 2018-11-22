@@ -32,7 +32,6 @@ def leacots():
         m_me_list.append(m.m_content)
     # 获得留言
     req = request.args.get('desc')
-    print(req)
     if req not in m_me_list:
         # 默认以主机名登录
         nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -40,8 +39,6 @@ def leacots():
         hostname = Message(m_time = nowtime,m_name = hostname, m_content = req)
         db.session.add(hostname)
         db.session.commit()
-        print(req)
-        print('*' * 100)
     m_all = Message.query.all()
     m_list = []
     for m in m_all:
