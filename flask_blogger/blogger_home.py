@@ -11,17 +11,49 @@ blogger_bp = Blueprint('Blogger',
 def about():
     return render_template('Blogger/about.html')
 
+@blogger_bp.route('/details')
+def details():
+    # 获取请求参数
+    dreq = request.args.get('param')
+    desc = request.args.get('desc')
+    # 判断有哪种请求方式
+    if dreq and desc:
+        aa_all = Article.query.filter_by(a_id=dreq).first()
+        mess_list = aa_all.a_comment
+        mess_list = mess_list.split('$▓㊣$')
+        mess_list = [x for x in mess_list if x != ' ']
+        mess_list.append(desc)
+        mess_list = list(set(mess_list))
+
+        a_update = Article.query.filter_by(a_id = dreq).update({'a_comment' : '$▓㊣$'.join(mess_list)})
+        db.session.commit()
+        aa_all = Article.query.filter_by(a_id=dreq).first()
+        mess_list = aa_all.a_comment
+        mess_list = mess_list.split('$▓㊣$')
+        mess_list = [x for x in mess_list if x != ' ']
+    elif dreq:
+        aa_all = Article.query.filter_by(a_id=dreq).first()
+        mess_str = aa_all.a_comment
+        mess_list = mess_str.split('$▓㊣$')
+        print('sdafsdafdsk')
+    # 如果两种都没有
+    else:
+        pass
+    return render_template('Blogger/details.html', aa_all=aa_all, mess_list=mess_list, dreq=dreq)
+
+
 @blogger_bp.route('/index')
 def index():
-    return render_template('Blogger/index.html')
+    a_all = Article.query.all()
+    a_list = [a for a in a_all]
+
+    return render_template('Blogger/index.html', a_list = a_list)
 
 @blogger_bp.route('/album')
 def album():
     return render_template('Blogger/album.html')
 
-@blogger_bp.route('/details')
-def details():
-    return render_template('Blogger/details.html')
+
 
 @blogger_bp.route('/leacots')
 def leacots():

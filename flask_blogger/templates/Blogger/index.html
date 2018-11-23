@@ -23,57 +23,7 @@
         </span>
       </div>
       <div class="list-item">
-        <div class="item">
-          <div class="layui-fluid">
-            <div class="layui-row">
-              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="/static/imgs/sy_img1.jpg" alt=""></div>
-              </div>
-              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
-                <div class="item-cont">
-                  <h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
-                  <h5>设计文章</h5>
-                  <p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                  <a href="details" class="go-icon"></a>
-                </div>
-            </div>
-            </div>
-           </div>
-        </div>
-        <div class="item">
-          <div class="layui-fluid">
-            <div class="layui-row">
-              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="/static/imgs/sy_img2.jpg" alt=""></div>
-              </div>
-              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
-                <div class="item-cont">
-                  <h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
-                  <h5>设计文章</h5>
-                  <p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                  <a href="details" class="go-icon"></a>
-                </div>
-            </div>
-            </div>
-           </div>
-        </div>
-        <div class="item">
-          <div class="layui-fluid">
-            <div class="layui-row">
-              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="/static/imgs/sy_img3.jpg" alt=""></div>
-              </div>
-              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
-                <div class="item-cont">
-                  <h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
-                  <h5>设计文章</h5>
-                  <p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                  <a href="details" class="go-icon"></a>
-                </div>
-            </div>
-            </div>
-           </div>
-        </div>
+        {% for a in a_list%}
         <div class="item">
           <div class="layui-fluid">
             <div class="layui-row">
@@ -82,32 +32,17 @@
               </div>
               <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                 <div class="item-cont">
-                  <h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
-                  <h5>设计文章</h5>
-                  <p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                  <a href="details" class="go-icon"></a>
+                  <h3>{{ a.a_title }}<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
+                  <h5>test文章</h5>
+                  <p>{{ a.a_content }}</p>
+                  <span class="go-icon"  onclick="ulrHtml({{ a.a_id }});"></span>
                 </div>
             </div>
             </div>
            </div>
         </div>
-        <div class="item">
-          <div class="layui-fluid">
-            <div class="layui-row">
-              <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="/static/imgs/sy_img5.jpg" alt=""></div>
-              </div>
-              <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
-                <div class="item-cont">
-                  <h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>
-                  <h5>设计文章</h5>
-                  <p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                  <a href="details" class="go-icon"></a>
-                </div>
-            </div>
-            </div>
-           </div>
-        </div>
+        {% endfor %}
+
       </div>
       <div id="demo" style="text-align: center;"></div>
     </div>
@@ -116,7 +51,10 @@
 {% block index_js%}
 
   <script type="text/javascript">
-
+     function ulrHtml(num) {
+             var toUrl = "details?param=" + num;
+             window.open(toUrl);
+         }
   </script>
 
 {% endblock %}
