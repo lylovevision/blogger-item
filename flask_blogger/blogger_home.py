@@ -1,11 +1,35 @@
-from flask import Blueprint, render_template, request
+from flask import ( 
+    Blueprint, render_template, request,
+    send_from_directory,redirect,url_for,abort,Flask
+    )
+from helper import random_filename, ensure_folder
 from bloggerdb.bloggerdb import db, Message, Photo, Article
+from werkzeug.datastructures import FileStorage
 import socket
 import datetime
+import os
+
+
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+app = Flask(__name__)
+app.upload_folder = os.path.join(ROOT, 'upload')
+ensure_folder(app.upload_folder)
 
 blogger_bp = Blueprint('Blogger',
         __name__,
     )
+
+@blogger_bp.route('/album')
+def album():
+    """ 相册 """
+    p_all = Photo.query.all()
+    
+    return render_template('Blogger/album.html', p_all=p_all)
+# ##############################################
+
+# #########################################
+
 
 @blogger_bp.route('/about')
 def about():
@@ -13,10 +37,8 @@ def about():
 
 @blogger_bp.route('/details')
 def details():
-    # 获取请求参数
     dreq = request.args.get('param')
     desc = request.args.get('desc')
-    # 判断有哪种请求方式
     if dreq and desc:
         aa_all = Article.query.filter_by(a_id=dreq).first()
         mess_list = aa_all.a_comment
@@ -36,7 +58,6 @@ def details():
         mess_str = aa_all.a_comment
         mess_list = mess_str.split('$▓㊣$')
         print('sdafsdafdsk')
-    # 如果两种都没有
     else:
         pass
     return render_template('Blogger/details.html', aa_all=aa_all, mess_list=mess_list, dreq=dreq)
@@ -49,11 +70,6 @@ def index():
 
     return render_template('Blogger/index.html', a_list = a_list)
 
-@blogger_bp.route('/album')
-def album():
-    return render_template('Blogger/album.html')
-
-
 
 @blogger_bp.route('/leacots')
 def leacots():
@@ -62,10 +78,8 @@ def leacots():
     m_me_list = [None, '']
     for m in m_all:
         m_me_list.append(m.m_content)
-    # 获得留言
     req = request.args.get('desc')
     if req not in m_me_list:
-        # 默认以主机名登录
         nowtime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         hostname = socket.gethostname()
         hostname = Message(m_time = nowtime,m_name = hostname, m_content = req)

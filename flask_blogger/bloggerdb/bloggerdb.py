@@ -16,29 +16,24 @@ db = SQLAlchemy(app)
 
 class Article(db.Model):
     """ 文章 """
+
     __table_args__ = {'mysql_collate': 'utf8mb4_general_ci'}
     a_id = db.Column(db.Integer, autoincrement=True, primary_key=True, comment='文章id')
     a_title = db.Column(db.String(100), unique=True, nullable=False, comment='文章题目')
     a_content = db.Column(db.Text, nullable=False, comment='文章内容')
     a_img_path = db.Column(db.String(100), nullable=False, comment='文章img')
     a_time = db.Column(db.String(50),default='CURRENT_TIMESTAMP', comment='文章时间')
-    a_comment = db.Column(db.String(200),unique=True, nullable=False, comment='文章评论')
-
-    def __repr__(self):
-        return '<Article %r>' % self.a_title
+    a_comment = db.Column(db.String(200), nullable=False, comment='文章评论')
 
 
 class Photo(db.Model):
     """ 相册 """
     __table_args__ = {'mysql_collate': 'utf8mb4_general_ci'}
     p_id = db.Column(db.Integer, autoincrement=True, primary_key=True ,comment='相册id')
-    p_name = db.Column(db.String(50), nullable=False ,comment='相册名')
+    p_name = db.Column(db.Text, nullable=False ,comment='相册名')
     p_address = db.Column(db.String(100) ,comment='相册地点')
     p_time = db.Column(db.String(50), default='CURRENT_TIMESTAMP' ,comment='相册时间')
     p_img_path = db.Column(db.String(100), nullable=False ,comment='相册文件夹路径')
-
-    def __repr__(self):
-        return '<Photo %r>' % self.p_name
 
 class Message(db.Model):
     """ 留言 """
@@ -46,10 +41,7 @@ class Message(db.Model):
     m_id = db.Column(db.Integer, autoincrement=True, primary_key=True,comment='留言id')
     m_time = db.Column(db.String(50), default='CURRENT_TIMESTAMP',comment='留言时间')
     m_name = db.Column(db.String(50), nullable=False,comment='留言名称')
-    m_content = db.Column(db.String(200), nullable=False,comment='留言内容')
-
-    def __repr__(self):
-        return '<Message %r>' % self.m_name
+    m_content = db.Column(db.Text, nullable=False,comment='留言内容')
 
 # # 1.创建表
 db.create_all()

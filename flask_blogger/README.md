@@ -12,3 +12,9 @@ There is login,imgs requte
 
 All deletion and modification operations are completed by themselves.
 
+Win is mostly utf8 encoding, whereas in other environments you need to perform the following encoding or appropriate encoding to create a database
+
+```sql
+CREATE DATABASE IF NOT EXISTS bloggerdb default character SET utf8 COLLATE utf8_general_ci;
+```
+
