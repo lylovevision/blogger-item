@@ -17,4 +17,6 @@ Win is mostly utf8 encoding, whereas in other environments you need to perform t
 ```sql
 CREATE DATABASE IF NOT EXISTS bloggerdb default character SET utf8 COLLATE utf8_general_ci;
 ```
+`pip uninstall packagename`
+packagename = flask-sqlalchemy < 2.2
 

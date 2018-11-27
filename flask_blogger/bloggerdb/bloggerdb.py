@@ -32,7 +32,7 @@ class Photo(db.Model):
     p_id = db.Column(db.Integer, autoincrement=True, primary_key=True ,comment='相册id')
     p_name = db.Column(db.Text, nullable=False ,comment='相册名')
     p_address = db.Column(db.String(100) ,comment='相册地点')
-    p_time = db.Column(db.String(50), default='CURRENT_TIMESTAMP' ,comment='相册时间')
+    p_time = db.Column(db.Text, default='CURRENT_TIMESTAMP' ,comment='相册时间')
     p_img_path = db.Column(db.String(100), nullable=False ,comment='相册文件夹路径')
 
 class Message(db.Model):

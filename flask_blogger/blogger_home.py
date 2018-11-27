@@ -19,7 +19,7 @@ ensure_folder(app.upload_folder)
 blogger_bp = Blueprint('Blogger',
         __name__,
     )
-
+# a_title = '有头',a_content = '有内容',a_img_path = '美图',a_time = '当前时间',a_comment = '评论一条'
 @blogger_bp.route('/album')
 def album():
     """ 相册 """

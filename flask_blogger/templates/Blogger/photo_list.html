@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>预览</title>
-
-<script type="text/javascript" src="/static/js/reflex.js"></script>
+<title>相册浏览</title>
+<!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="/static/imgs/love.jpg"/>
 <!--支持class属性：iradius, iborder, iheight, iopacity, idistance, icolor, itiltleft, itiltright, itiltnone -->
 <style type="text/css">
     *{margin:0;padding:0;list-style-type:none;}
@@ -16,25 +16,89 @@
                 display: inline-block;
                 vertical-align: top;
             }
+    .d_img{
+       width:250px; height:200px;overflow:hidden;float:left
+    }
+    .i-img{
+        max-width:260px;_width:expression(this.width > 300 ? "200px" : this.width);
+    }
+    button{
+
+    }
+    .i-b{
+      color: #A3F7BF;
+      border-color: #A3F7BF;
+      background: -webkit-linear-gradient(left, #a3f7bf, #a3f7bf) no-repeat;
+      background: linear-gradient(to right, #a3f7bf, #a3f7bf) no-repeat;
+      background-size: 0% 100%;
+      width:500px;
+      height:20px;
+    }
+    .i-b:hover {
+      background-size: 100% 100%;
+      color: #27323A;
+
+    }
+    .btn-7 {
+      color: #A6ACEC;
+      border-color: #A6ACEC;
+      overflow: hidden;
+      position: relative;
+    width:80px;
+      height:20px;
+    }
+    .btn-7:before, .btn-7:after {
+      content: "";
+      height: 100%;
+      width: 0;
+      position: absolute;
+      z-index: -1;
+      background-color: #A6ACEC;
+      top: 0;
+      -webkit-transition: all 0.25s;
+      transition: all 0.25s;
+    }
+    .btn-7:before {
+      left: 0;
+    }
+    .btn-7:after {
+      right: 0;
+    }
+    .btn-7:hover {
+      color: #27323A;
+    }
+    .btn-7:hover:before, .btn-7:hover:after {
+      width: 50%;
+    }
+
+
 </style>
 </head>
 <body>
     <h1>图片列表</h1>
-    <hr>
-    {% if image_list %}
-        <ul>
-            {% for img in image_list %}
-                <li>
-                    <img src="{{ url_for('view_image', filename=img) }}">
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <div>没有图片</div>
-    {% endif %}
+    <hr><hr>
+     <div width=100%>
     <form action="{{ url_for('view_upload') }}" method="POST" enctype="multipart/form-data">
-        <input type="file" name="myfile">
-        <button type="submit">上传</button>
+        <input class="i-b" type="file" name="myfile">
+        <button type="submit" class="btn-7">上传</button>
     </form>
+    </div>
+    <div>
+        {% if image_list %}
+            <ul>
+                {% for img in image_list %}
+                <div class="d_img">
+                    <li>
+                        <img src="{{ url_for('view_image', filename=img) }}" class="i-img">
+                    </li>
+                </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div>没有图片</div>
+        {% endif %}
+    </div>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript"></script>
 </body>
 </html> 
