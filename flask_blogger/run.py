@@ -18,9 +18,28 @@ app = Flask(__name__)
 app.upload_folder = os.path.join(ROOT, 'upload')
 ensure_folder(app.upload_folder)
 
+potime = ''
+
 @app.route('/photo')
 def view_index():
-    return render_template('Blogger/photo_list.html')
+    global potime
+    potime = request.args.get('nowtime')
+    file_list = []
+    sql_poall = Photo.query.filter_by(p_time = potime).first()
+    if sql_poall in [None, '']:
+        pass
+    else:
+        sqlponame_list = sql_poall.p_name
+        # 划分字符串
+        time_filename = sqlponame_list
+        ss_list = time_filename.split('@@')
+        ss_list.remove(ss_list[0])
+        file_list =[]
+        for s in ss_list:
+            for sf in s.split('$▓㊣$'):
+                if len(sf) > 34:
+                    file_list.append(sf)
+    return render_template('Blogger/photo_list.html', image_list=file_list)
 
 # 判断图片格式
 def allowed_file(filename_Format):
@@ -36,17 +55,20 @@ def allowed_file(filename_Format):
 
 @app.route('/upload', methods=['POST'])
 def view_upload():
-    potime = request.args.get('nowtime')
+    global potime
     myfile = request.files.get('myfile')
     if isinstance(myfile, FileStorage):
         new_name = random_filename(myfile.filename)
         if allowed_file(new_name):
-            sql_poall = Photo.query.filter_by(p_time = '2018-12-13').first()
-            if sql_poall == '':
+            sql_poall = Photo.query.filter_by(p_time = potime).first()
+            if sql_poall in [None, '']:
+                print('*'*90)
+                print(sql_poall)
+                print(potime)
                 abort(400)
             else:
                 sqlponame_list = sql_poall.p_name
-                Photo.query.filter_by(p_time = '2018-11-13').update({'p_name' : sqlponame_list + '@@'+ str(potime) + '$▓㊣$' + new_name})
+                Photo.query.filter_by(p_time = potime).update({'p_name' : sqlponame_list + '@@' + '$▓㊣$' + new_name})
                 db.session.commit()
                 save_path = os.path.join(app.upload_folder, new_name)
                 myfile.save(save_path)
@@ -76,16 +98,18 @@ def view_demo():
     '''
     # @@2018-11-13$▓㊣$e742557bd90457ba9499a2baa792fd2c@Tulips.jpg@@2018-11-13$▓㊣$e742557bd90457ba9499a2baa792fd2c@Tulips.jpg 
     # '☞'+ str(potime) + '$▓㊣$' + new_name
-    potime = request.args.get('nowtime')
-    file_list = os.listdir(app.upload_folder)
-    sql_poall = Photo.query.filter_by(p_time = file_list).first()
-    if sql_poall in None:
+    global potime
+    # file_list = os.listdir(app.upload_folder)
+    file_list = []
+    sql_poall = Photo.query.filter_by(p_time = potime).first()
+    if sql_poall in [None, '']:
         pass
     else:
         sqlponame_list = sql_poall.p_name
         # 划分字符串
         time_filename = sqlponame_list
         ss_list = time_filename.split('@@')
+        ss_list.remove(ss_list[0])
         file_list =[]
         for s in ss_list:
             for sf in s.split('$▓㊣$'):

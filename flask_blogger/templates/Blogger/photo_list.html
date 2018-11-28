@@ -70,7 +70,30 @@
     .btn-7:hover:before, .btn-7:hover:after {
       width: 50%;
     }
+    #none_img{
+      font-weight: 600;
+      font-size: 28px;
+      font-family: "黑体";
+      color: #898989;
+      background: -webkit-linear-gradient(45deg, #898989, #fbd7c6, #fdefac, #bfb5dd, #bed5f5);
+      -moz-linear-gradient(45deg, #70f7fe, #fbd7c6, #fdefac, #bfb5dd, #bed5f5);
+      -ms-linear-gradient(45deg, #70f7fe, #fbd7c6, #fdefac, #bfb5dd, #bed5f5);
+      color: transparent;
+      /*设置字体颜色透明*/
+      -webkit-background-clip: text;
+      /*背景裁剪为文本形式*/
+      animation: ran 10s linear infinite;
+      /*动态10s展示*/
+      }
 
+      @keyframes ran {
+          from {
+              backgroud-position: 0 0;
+          }
+          to {
+              background-position: 2000px 0;
+          }
+    }
 
 </style>
 </head>
@@ -95,7 +118,7 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <div>没有图片</div>
+            <span id='none_img'>没有图片</span>
         {% endif %}
     </div>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
